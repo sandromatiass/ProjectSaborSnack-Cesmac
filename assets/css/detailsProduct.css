@@ -1,0 +1,17 @@
+.container-details{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.container-details strong{
+  color: #397DE4;
+}
+
+
+.backLink {
+  font-weight: bold;
+  text-decoration: none;
+  color: #397DE4;
+}
