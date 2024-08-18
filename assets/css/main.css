@@ -8,8 +8,11 @@
 }
 
 body {
-  width: 100%;
-  height: 100vh;
+  background-color: #f3f3f3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-x: hidden; 
 }
 
 header {
@@ -17,12 +20,30 @@ header {
   background-color: #397DE4;
   text-align: center;
   width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-header h1{
+header h1 {
   font-size: 2em;
   font-weight: bold;
-  color: white;
+  color: #fff;
+}
+
+header nav ul {
+  display: flex;
+  color: #fff;
+  font-weight: bold;
+  gap: 1rem;
+}
+
+header nav ul a {
+  color: #fff;
+}
+
+header nav ul a:hover {
+  text-decoration: underline;
 }
 
 .container {
@@ -31,6 +52,7 @@ header h1{
   flex-direction: column;
   gap: 2rem;
   align-items: center;
+  padding: 0 1rem;
 }
 
 .container h2 {
@@ -40,8 +62,9 @@ header h1{
 
 .container-products {
   display: flex;
-  align-items: center;
-  gap: 5rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center; 
 }
 
 .container-products li a {
@@ -49,13 +72,12 @@ header h1{
   flex-direction: column;
   align-items: center;
   max-width: 300px;
-
   font-weight: bold;
   color: #397DE4;
   text-align: center;
 }
 
-li a img{
+li a img {
   height: 180px;
   width: 100%;
   border-radius: 15px;
@@ -72,4 +94,82 @@ footer {
   padding: 10px 0;
   text-align: center;
   box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
+}
+
+
+@media (max-width: 1200px) {
+  .container h2 {
+    font-size: 2em;
+  }
+
+  .container-products {
+    gap: 1rem;
+  }
+
+  .container-products li a {
+    max-width: 250px;
+  }
+}
+
+@media (max-width: 768px) {
+  header h1 {
+    font-size: 1.5em;
+  }
+
+  header nav ul {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .container {
+    padding: 0 0.5rem;
+  }
+
+  .container h2 {
+    font-size: 1.8em;
+  }
+
+  .container-products {
+    gap: 0.5rem;
+  }
+
+  .container-products li a {
+    max-width: 200px;
+  }
+
+  li a img {
+    width: 250px;
+    object-fit: cover;
+  }
+}
+
+@media (max-width: 480px) {
+  header h1 {
+    font-size: 1.2em;
+  }
+
+  header nav ul {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .container h2 {
+    font-size: 1.5em;
+  }
+
+  .container-products {
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 5rem;
+  }
+
+  .container-products li a {
+    max-width: 100%;
+  }
+
+  footer {
+    position: fixed;
+    font-size: 0.9em;
+    padding: 8px 0;
+  }
 }

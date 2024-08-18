@@ -1,0 +1,40 @@
+.container_form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+form input, textarea{
+  padding: 8px;
+  width: 25rem;
+  height: 3rem;
+  border-radius: 5px;
+  border: 2px solid #397DE4;
+}
+
+form input, textarea::placeholder{
+  font-size: 1.2em;
+}
+
+textarea {
+  font-size: 1.2em;
+}
+
+textarea {
+  height: 10rem;
+  resize: none;
+}
+
+button {
+  padding: 8px 32px;
+  font-size: 1.2em;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  background-color: #397DE4;
+}
+
+.uploadImg {
+  border: none;
+}

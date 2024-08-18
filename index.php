@@ -1,5 +1,12 @@
 <?php
-include 'produtos.php';
+include 'db_connect.php';
+
+try {
+    $stmt = $pdo->query('SELECT * FROM produtos');
+    $produtos = $stmt->fetchAll(PDO::FETCH_ASSOC);
+} catch (PDOException $e) {
+    die("Erro ao buscar produtos: " . $e->getMessage());
+}
 ?>
 
 <!DOCTYPE html>
@@ -17,22 +24,30 @@ include 'produtos.php';
 <body>
     <header>
         <h1>Sabor Saudável</h1>
+        <nav>
+            <ul>
+                <li><a href="index.php">Início</a></li>
+                <li><a href="adicionar.php">Adicionar Produto</a></li>
+                <li><a href="alterar.php">Alterar Produto</a></li>
+            </ul>
+        </nav>
     </header>
     <div class="container">
-    <h2>Lista de Produtos</h2>
-    <ul class="container-products">
-        <?php foreach ($produtos as $index => $produto): ?>
-            <li>
-                <a href="detalhe_produto.php?id=<?= $index ?>">
-                    <img src="<?= $produto['imagem'] ?>" alt="<?= $produto['nome'] ?>">
-                    <?= $produto['nome'] ?> - R$ <?= number_format($produto['preco'], 2, ',', '.') ?>
-                </a>
-            </li>
-        <?php endforeach; ?>
-    </ul>
+        <h2>Lista de Produtos</h2>
+        <ul class="container-products">
+            <?php foreach ($produtos as $produto): ?>
+                <li>
+                    <a href="detalhe_produto.php?id=<?= $produto['id'] ?>">
+                        <img src="<?= $produto['imagem'] ?>" alt="<?= $produto['nome'] ?>">
+                        <?= htmlspecialchars($produto['nome']) ?> - R$ <?= number_format($produto['preco'], 2, ',', '.') ?>
+                    </a>
+                    
+                </li>
+            <?php endforeach; ?>
+        </ul>
     </div>
+    <footer>
+        <p>&copy; <?= date('Y') ?> Minha Loja de Produtos Saudáveis. Todos os direitos reservados.</p>
+    </footer>
 </body>
-<footer>
-    <p>&copy; <?= date('Y') ?> Minha Loja de Produtos Saudáveis. Todos os direitos reservados.</p>
-</footer>
 </html>

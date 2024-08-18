@@ -1,13 +1,21 @@
 <?php
-include 'produtos.php';
+include 'db_connect.php';
 
 $id = $_GET['id'] ?? null;
 
-if ($id !== null && isset($produtos[$id])) {
-    $produto = $produtos[$id];
-} else {
-    echo "Produto não encontrado!";
-    exit;
+if ($id !== null) {
+    try {
+        $stmt = $pdo->prepare('SELECT * FROM produtos WHERE id = :id');
+        $stmt->execute(['id' => $id]);
+        $produto = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if (!$produto) {
+            echo "Produto não encontrado!";
+            exit;
+        }
+    } catch (PDOException $e) {
+        die("Erro ao buscar produto: " . $e->getMessage());
+    }
 }
 ?>
 
@@ -26,19 +34,24 @@ if ($id !== null && isset($produtos[$id])) {
 <body>
     <header>
         <h1>Sabor Saudável</h1>
+        <nav>
+            <ul>
+                <li><a href="index.php">Início</a></li>
+                <li><a href="adicionar.php">Adicionar Produto</a></li>
+                <li><a href="alterar.php">Alterar Produto</a></li>
+            </ul>
+        </nav>
     </header>
     <div class="container">
         <h2>Detalhes do Produto</h2>
         <div class="container-details">
-            <img src="<?= $produto['imagem'] ?>" alt="<?= $produto['nome'] ?>" style="width: 300px; height: auto;">
-            <p><strong>Nome:</strong> <?= $produto['nome'] ?></p>
-            <p><strong>Descrição:</strong> <?= $produto['descricao'] ?></p>
+            <img src="<?= $produto['imagem'] ?>" alt="<?= htmlspecialchars($produto['nome']) ?>" style="width: 300px; height: auto;">
+            <p><strong>Nome:</strong> <?= htmlspecialchars($produto['nome']) ?></p>
+            <p><strong>Descrição:</strong> <?= htmlspecialchars($produto['descricao']) ?></p>
             <p><strong>Preço:</strong> R$ <?= number_format($produto['preco'], 2, ',', '.') ?></p>
             <a href="index.php" class="backLink">Voltar para a lista de produtos</a>
         </div>
     </div>
-    
-    
     <footer>
         <p>&copy; <?= date('Y') ?> Minha Loja de Produtos Saudáveis. Todos os direitos reservados.</p>
     </footer>
