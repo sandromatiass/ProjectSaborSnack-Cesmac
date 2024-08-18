@@ -1,5 +1,5 @@
 <?php
-include 'produtos.php';
+include './api/produtos.php';
 ?>
 
 <!DOCTYPE html>
