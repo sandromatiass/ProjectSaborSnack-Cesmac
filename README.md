@@ -7,12 +7,7 @@ Este projeto é parte de um trabalho acadêmico desenvolvido na faculdade CESMAC
 - **Front-end:**
   - HTML5
   - CSS3
-  - JavaScript
   - PHP
-- **Back-end:**
-  - PHP
-- **Banco de Dados:**
-  - MySQL
 
 ## 📋 Funcionalidades
 
